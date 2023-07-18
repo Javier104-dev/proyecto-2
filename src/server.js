@@ -113,6 +113,10 @@ server.delete('/api/v1/muebles/:codigo', async (req, res) => {
     }
 });
 
+server.use('*', (req, res) => {
+    res.status(404).json({ error: 404, message: 'Pagina no encontrada' });
+});
+
 server.listen(process.env.SERVER_PORT, process.env.SERVER_HOST, () => {
     console.log(`Ejecutandose en http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}/api/v1/muebles`);
 });

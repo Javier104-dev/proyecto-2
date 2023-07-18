@@ -73,7 +73,9 @@ async function testEnvDist() {
 async function testGitIgnore() {
     console.log(`TEST N°1.3: Éxito - Archivo .gitignore`);
     let data = await readFile(path.join(__dirname, '../.gitignore'));
-    data = data.length > 0 ? data : [];
+    data = data.length > 0 ? data.map((item) => item.trim()) : [];
+    // agregado "data.map((item) => item.trim())" para limpiar los saltos de linea al usar windows \r
+    // antes data daba [ 'node_modules/\r', '.env' ]
     const NODE_MODULES = data.find((item) => item === 'node_modules/');
     const ENV = data.find((item) => item === '.env');
 
