@@ -86,7 +86,7 @@ server.put('/api/v1/muebles/:codigo', async (req, res) => {
 
         await collection.updateOne({ codigo: Number(codigo) }, { $set: mueble });
 
-        res.status(200).json({ message: 'Registro actualizado', payload: mueble });
+        res.status(200).json({ message: 'Registro actualizado', payload: { codigo, ...mueble } });
     } catch (error) {
         res.status(500).json({ message: 'Se ha generado un error en el servidor' });
     } finally {
